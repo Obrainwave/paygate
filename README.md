@@ -105,8 +105,8 @@ You can load Paygate instance using **`use \Obrainwave\Paygate\Facades\Paygate`*
 use Paygate;
 
 $payload = array(
-  'provider' => 'paystack',
-  'provider_token' => 'PAYSTACK_SECRET_KEY', // Make sure you don't expose this in your code
+  'provider' => 'gtpay',
+  'provider_token' => 'GTPAY_SECRET_KEY', // Make sure you don't expose this in your code
   'reference' => 'T2CZ143DUMG',
   
  );
