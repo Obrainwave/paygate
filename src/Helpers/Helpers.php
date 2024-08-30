@@ -143,6 +143,16 @@ function validateParam($data) : object
 
         return toObject($res);
     }
+
+    if(!isset($data->reference) || $data->reference == null)
+    {
+        $res = [
+            'status' => false,
+            'message' => fieldErr('reference')
+        ];
+
+        return toObject($res);
+    }
    
     switch($data->provider)
     {
@@ -168,15 +178,7 @@ function validateParam($data) : object
 
                 return toObject($res);
             }
-            if(!isset($data->custom_ref) || $data->custom_ref == null)
-            {
-                $res = [
-                    'status' => false,
-                    'message' => fieldErr('custom_ref')
-                ];
-
-                return toObject($res);
-            }
+            
             break;
 
         case 'monnify':
@@ -207,15 +209,7 @@ function validateParam($data) : object
 
                 return toObject($res);
             }
-            if(!isset($data->custom_ref) || $data->custom_ref == null)
-            {
-                $res = [
-                    'status' => false,
-                    'message' => fieldErr('custom_ref')
-                ];
-
-                return toObject($res);
-            }
+            
             break;
 
         default:

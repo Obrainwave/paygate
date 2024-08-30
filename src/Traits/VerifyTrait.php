@@ -132,27 +132,95 @@ trait VerifyTrait
         switch($provider)
         {
             case 'paystack':
-                $data = isset($response['data']) ? $response['data'] : null;
+                $data = isset($response['data']) ? toObject($response['data']) : null;
+                if($data != null)
+                {
+                    if(strtolower($data->status) == 'success')
+                    {
+                        $status = 'successful';
+                    }else{
+                        $status = 'failed';
+                    }
+                    $amount = $data->amount/100;
+                    $charged_amount = $data->requested_amount/100;
+                    $ref = $data->reference;
+                    $payment_method = $data->channel;
+                }
                 break;
 
             case 'gtpay':
-                $data = isset($response['data']) ? $response['data'] : null;
+                $data = isset($response['data']) ? toObject($response['data']) : null;
+                if($data != null)
+                {
+                    if(strtolower($data->transaction_status) == 'success')
+                    {
+                        $status = 'successful';
+                    }else{
+                        $status = 'failed';
+                    }
+                    $amount = $data->transaction_amount/100;
+                    $charged_amount = ($data->transaction_amount/100) + $data->fee;
+                    $ref = $data->transaction_ref;
+                    $payment_method = $data->transaction_type;
+                }
                 break;
             
             case 'flutterwave': 
-                $data = isset($response['data']) ? $response['data'] : null;
+                $data = isset($response['data']) ? toObject($response['data']) : null;
+                if($data != null)
+                {
+                    if(strtolower($data->status) == 'successful')
+                    {
+                        $status = 'successful';
+                    }else{
+                        $status = 'failed';
+                    }
+                    $amount = $data->amount;
+                    $charged_amount = $data->charged_amount;
+                    $ref = $data->tx_ref;
+                    $payment_method = $data->payment_type;
+                }
                 break;
 
             case 'monnify':
-                $data = isset($response['responseBody']) ? $response['responseBody'] : null;
+                $data = isset($response['responseBody']) ? toObject($response['responseBody']) : null;
+                if($data != null)
+                {
+                    if(strtolower($data->paymentStatus) == 'paid')
+                    {
+                        $status = 'successful';
+                    }else{
+                        $status = 'failed';
+                    }
+                    $amount = $data->amountPaid;
+                    $charged_amount = $data->totalPayable;
+                    $ref = $data->paymentReference;
+                    $payment_method = $data->paymentMethod;
+                }
                 break;
         }
-        $res = [
-            'errors' => false,
-            'message' => 'Payment fetched successfully with '.$provider,
-            'data' => $data, 
-            'provider' => $provider     
-        ];
+        if($data != null)
+        {
+            $res = [
+                'errors' => false,
+                'message' => 'Payment fetched successfully with '.$provider,
+                'provider' => $provider,
+                'status' => $status,
+                'amount' => $amount,
+                'charged_amount' => $charged_amount,
+                'reference' => $ref,
+                'payment_method' => $payment_method,
+                'data' => $data, 
+                
+            ];
+        }else{
+            $res = [
+                'errors' => true,
+                'message' => 'Necessary parameters missing from provider response',
+                'provider' => $provider,
+                'data' => null, 
+            ];
+        }
         return toObject($res);
     }
 

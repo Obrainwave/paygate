@@ -29,7 +29,7 @@ trait InitiateTrait
                     'email' => $data->email,
                     'amount' => $data->amount * 100,
                     'currency' => isset($data->currency) ? $data->currency : 'NGN',
-                    'reference' => isset($data->custom_ref) ? $data->custom_ref : null,
+                    'reference' => isset($data->reference) ? $data->reference : null,
                     'channels' => isset($data->payment_methods) ? $data->payment_methods : null,
                     'callback_url' => isset($data->redirect_url) ? $data->redirect_url : null,
                 ];
@@ -62,7 +62,7 @@ trait InitiateTrait
                 ];
 
                 $payload = [
-                    'transaction_ref' => isset($data->custom_ref) ? $data->custom_ref : null,
+                    'transaction_ref' => isset($data->reference) ? $data->reference : null,
                     'customer_name' => isset($data->name) ? $data->name : null,
                     'email' => $data->email,
                     'amount' => $data->amount * 100,
@@ -84,7 +84,7 @@ trait InitiateTrait
                     {
                         $payment = $this->successInitiate($response, $data->provider);
                     }else{
-                        $payment = failMsg($data->provider, $response, $data->custom_ref);
+                        $payment = failMsg($data->provider, $response);
                     }
                     
                 }else{
@@ -102,7 +102,7 @@ trait InitiateTrait
                 ];
 
                 $payload = [
-                    'tx_ref' => $data->custom_ref,
+                    'tx_ref' => $data->reference,
                     'amount' => $data->amount,
                     'currency' => isset($data->currency) ? $data->currency : 'NGN',
                     'redirect_url' => isset($data->redirect_url) ? $data->redirect_url : null,
@@ -128,7 +128,7 @@ trait InitiateTrait
                     {
                         $payment = $this->successInitiate($response, $data->provider);
                     }else{
-                        $payment = failMsg($data->provider, $response, $data->custom_ref);
+                        $payment = failMsg($data->provider, $response, $data->reference);
                     }
                     
                 }else{
@@ -158,13 +158,14 @@ trait InitiateTrait
                 ];
 
                 $payload = [
-                    'paymentReference' => $data->custom_ref,
+                    'paymentReference' => $data->reference,
                     'customerName' => $data->name,
                     'customerEmail' => $data->email,
                     'amount' => $data->amount,
                     'currencyCode' => isset($data->currency) ? $data->currency : 'NGN',
                     'contractCode' => $data->contract_code,
                     'paymentMethods' => isset($data->payment_methods) ? $data->payment_methods : null,
+                    'redirectUrl' => isset($data->redirect_url) ? $data->redirect_url : null,
                 ];
 
                 $response = Http::withToken($monnify_token)
@@ -192,7 +193,7 @@ trait InitiateTrait
 
 
 
-    public function successInitiate($response, $provider, $custom_ref=null) : object
+    public function successInitiate($response, $provider, $reference=null) : object
     {
         switch($provider)
         {
@@ -210,7 +211,7 @@ trait InitiateTrait
             
             case 'flutterwave': 
                 $checkout_url = isset($response['data']['link']) ? $response['data']['link'] : null;
-                $ref = $custom_ref;
+                $ref = $reference;
                 $exp = explode('/', $checkout_url);
                 $access_code = end($exp);
                 break;
