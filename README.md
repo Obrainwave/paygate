@@ -67,7 +67,7 @@ The table below shows and explains the field features. <br/>Note the **Mandatory
 | `phone_number` | string | N/A  | N/A | O | N/A | This is only applicable to **flutterwave**.<br/>This is the phone number linked to the customer's bank account or mobile money account |
 
 
-##### Response Sample
+#### Response Sample
 If successful, you will receive a response that looks like the below sample response
 ```
 {
@@ -84,7 +84,7 @@ If successful, you will receive a response that looks like the below sample resp
 
 
 #### Response Fields
-Note that the table below on shows and explains most important fields to complete the payment or transaction.
+Note that the table below shows and explains the most important fields to complete the payment or transaction.
 
 | Field Name | Type | Description |
 | ----- | ----- | ----- |
@@ -100,7 +100,7 @@ Note that the table below on shows and explains most important fields to complet
 
 ### Verify Payment/Transaction
 You can load Paygate instance using **`use \Obrainwave\Paygate\Facades\Paygate`** or just use the facade **`use Paygate`**.
-##### Request Sample
+#### Request Sample
 ```php
 use Paygate;
 
@@ -121,6 +121,36 @@ The table below shows and explains the field features. <br/>Note the **Mandatory
 | `provider` | string | M  | M | M | M | This is the payment gateway name.<br/> For now can only be **paystack**, **gtpay**, **flutterwave** and **monnify**. |
 | `provider_token` | string | M  | M | M | M | This is the payment gateway `access_token` or `API Secret Key`. <br/> For **Monnify** only, you your `API Key` and `Secret Key` should be in `ApiKey:SecretKey` format as `provider_token` |
 | `reference` | string | M | M | M | M | Your unique generated reference sent to payment gateway. It should also be returned via payment initiation response |
+
+
+#### Response Sample
+If successful, you will receive a response that looks like the below sample response
+```
+{
+  "errors": false
+  "message": "Payment fetched successfully with gtpay"
+  "provider": "gtpay"
+  "status": "successful"
+  "amount": 230
+  "charged_amount": 232.3
+  "reference": "9412041935"
+  "payment_method": "card"
+  "data": {
+    ...
+  }
+}
+```
+
+#### Response Fields
+Note that the table below shows and explains the most important fields that decide the payment or transaction status.
+
+| Field Name | Type | Description |
+| ----- | ----- | ----- |
+| `errors` | boolean | Can only be **true** or **false**. The request was successful if **true** and **false** if the request was not successful |
+| `message` | string | Short description of the request  |
+| `provider` | string | This is the payment gateway name.<br/> For now can only be **paystack**, **gtpay**, **flutterwave** and **monnify**.   |
+| `status` | string | Can only be **successful** or **failed**. The payment was completed and successful if **successful** and **failed** if the payment was not successful or not completed.<br/> If you want to dig more about the `status`, check for payment gateway transaction status in `data` field. <br/> `status` for **paystack**, `transaction_status` for **gtpay**, `status` for **flutterwave**, and `paymentStatus` for **monnify**.  |
+| `data` | object | This contains all the parameters you need to play with the payment or transaction verification |
 
 
 
