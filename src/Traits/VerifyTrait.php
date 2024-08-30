@@ -2,8 +2,6 @@
 namespace Obrainwave\Paygate\Traits;
 
 use Illuminate\Support\Facades\Http;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 
 trait VerifyTrait 
 {
