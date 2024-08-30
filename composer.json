@@ -1,0 +1,74 @@
+{
+    "name": "obrainwave/paygate",
+    "version": "1.0.0",
+    "description": "This package will help you as a developer to use just one code for multiple payment gateway",
+    "type": "library",
+    "keywords": [
+        "obrainwave",
+        "laravel",
+        "paygate"
+    ],
+    "homepage": "https://github.com/obrainwave/paygate",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Olaiwola Akeem Salau",
+            "email": "olaiwolaakeem@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "spatie/laravel-package-tools": "*",
+        "illuminate/contracts": "*"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "nunomaduro/collision": "^6.1",
+        "orchestra/testbench": "^8.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.1",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpunit/phpunit": "^9.6",
+        "spatie/laravel-ray": "^1.26"
+    },
+    "autoload": {
+        "psr-4": {
+            "Obrainwave\\Paygate\\": "src/"
+        },
+        "files": [
+            "src/Helpers/Helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Obrainwave\\Paygate\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Obrainwave\\Paygate\\PaygateServiceProvider"
+            ],
+            "aliases": {
+                "Paygate": "Obrainwave\\Paygate\\Facades\\Paygate"
+            }
+        }
+    }
+}
