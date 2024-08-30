@@ -22,7 +22,8 @@ php artisan vendor:publish --tag="paygate-config"
 
 ## Usage
 
-#### Initiate Payment/Transaction
+### Initiate Payment/Transaction
+You can load Paygate instance using **`use \Obrainwave\Paygate\Facades\Paygate`** or just use the facade **`use Paygate`**.
 ##### Request Sample
 ```php
 use Paygate;
@@ -32,7 +33,7 @@ $payload = array(
   'provider_token' => 'PAYSTACK_SECRET_KEY', // Make sure you don't expose this in your code
   'amount' => 250,
   'email' => 'ola@dev.com',
-  'custom_ref' => 'T2CZ143DUMG',
+  'reference' => 'T2CZ143DUMG',
   'redirect_url' => 'https://mydomain.com/verify-payment',
   'name' => 'Akeem Salau', 
   'contract_code' => '32904826734',
@@ -43,11 +44,11 @@ $payload = array(
   'phone_number' => '08022999871'
  );
 
-$payment = Paygate::initiatePayment($data);
+$payment = Paygate::initiatePayment($payload);
 ```
 
 #### Request Fields
-The table below shows and explains the fields feature. <br/>Note the **Mandatory(M)**, **Optional(O)**, and **Not Applicable(N/A)** used in the table.
+The table below shows and explains the field features. <br/>Note the **Mandatory(M)**, **Optional(O)**, and **Not Applicable(N/A)** used in the table.
 
 | Field Name | Type | Paystack | GTPay | Flutterwave | Monnify | Description |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
@@ -55,7 +56,7 @@ The table below shows and explains the fields feature. <br/>Note the **Mandatory
 | `provider_token` | string | M  | M | M | M | This is the payment gateway `access_token` or `API Secret Key`. <br/> For **Monnify** only, you your `API Key` and `Secret Key` should be in `ApiKey:SecretKey` format as `provider_token` |
 | `amount` | float  | M  | M | M | M | This is the amount to be charged for the transaction or the amount you are debiting customer. |
 | `email` | string | M  | M | M | M | Customer's email address |
-| `custom_ref` | string | M | M | M | M | Your unique generated reference |
+| `reference` | string | M | M | M | M | Your unique generated reference |
 | `redirect_url` | url | O  | O | O | O | Fully qualified url, e.g. https://example.com/ . <br/>Use this to override the callback url provided on the dashboard for this transaction |
 | `name` | string | O  | O | O | M | Customer's name |
 | `contract_code` | string | N/A  | N/A | N/A | M | Customer's email address |
@@ -91,6 +92,41 @@ Note that the table below on shows and explains most important fields to complet
 | `message` | string | Short description of the request  |
 | `data` | object | This contains all the parameters you need to complete the payment or transaction |
 | `data->checkout_url` | url | This is the checkout url from the payment gateway for the customer to complete the payment. You can redirect this url to give customer interface. |
+| `data->reference` | string | Merchant's Unique reference for the transaction. The unique generated reference you send via request to payment gateway. |
+| `data->access_code` | string | Unique reference generated for the transaction by payment gateway. |
+| `provider` | string | This is the payment gateway name.<br/> For now can only be **paystack**, **gtpay**, **flutterwave** and **monnify**.   |
+
+
+
+### Verify Payment/Transaction
+You can load Paygate instance using **`use \Obrainwave\Paygate\Facades\Paygate`** or just use the facade **`use Paygate`**.
+##### Request Sample
+```php
+use Paygate;
+
+$payload = array(
+  'provider' => 'paystack',
+  'provider_token' => 'PAYSTACK_SECRET_KEY', // Make sure you don't expose this in your code
+  'reference' => 'T2CZ143DUMG',
+  
+ );
+
+$payment = Paygate::verifyPayment($payload);
+```
+#### Request Fields
+The table below shows and explains the field features. <br/>Note the **Mandatory(M)**, **Optional(O)**, and **Not Applicable(N/A)** used in the table.
+
+| Field Name | Type | Paystack | GTPay | Flutterwave | Monnify | Description |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| `provider` | string | M  | M | M | M | This is the payment gateway name.<br/> For now can only be **paystack**, **gtpay**, **flutterwave** and **monnify**. |
+| `provider_token` | string | M  | M | M | M | This is the payment gateway `access_token` or `API Secret Key`. <br/> For **Monnify** only, you your `API Key` and `Secret Key` should be in `ApiKey:SecretKey` format as `provider_token` |
+| `reference` | string | M | M | M | M | Your unique generated reference sent to payment gateway. It should also be returned via payment initiation response |
+
+
+
+
+## Conclusion
+Presently only local payment gateways work. International payment gateways(such as Stripe, Paypal, etc) will be added. <br/>For this package only initiates and verifies transactions at minimum version. More features will be added in subsequent versions. **Please watchout!!!**
 
 
 
