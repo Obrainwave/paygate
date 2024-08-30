@@ -136,7 +136,7 @@ If successful, you will receive a response that looks like the below sample resp
   "reference": "9412041935"
   "payment_method": "card"
   "data": {
-    `...`
+    ...
   }
 }
 ```
