@@ -16,8 +16,5 @@ class PaygateServiceProvider extends PackageServiceProvider
         $package
             ->name('paygate')
             ->hasConfigFile();
-            // ->hasViews()
-            // ->hasRoutes(['web'])
-            // ->hasCommand(SkeletonCommand::class);
     }
 }

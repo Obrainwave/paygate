@@ -30,7 +30,6 @@ trait VerifyTrait
                 ->withOptions([
                     'headers' => $headers,
                 ])->get($url);
-                    \Log::info($response);
 
                 if($response->status() == 200)
                 {
@@ -58,7 +57,6 @@ trait VerifyTrait
                 ->withOptions([
                     'headers' => $headers,
                 ])->get($url);
-                    \Log::info($response);
                 if($response->status() == 200)
                 {
                     if(isset($response['status']) && $response['status'] == true)
@@ -84,7 +82,6 @@ trait VerifyTrait
                 ->withOptions([
                     'headers' => $headers,
                 ])->get($url);
-                    \Log::info($response);
                 if($response->status() == 200)
                 {
                     if(isset($response['status']) && $response['status'] == 'success')
@@ -109,7 +106,6 @@ trait VerifyTrait
                 ->withOptions([
                     'headers' => $headers,
                 ])->get($url);
-                    \Log::info($response);
                 if($response->status() == 200)
                 {
                     if(isset($response['requestSuccessful']) && $response['requestSuccessful'] == true)

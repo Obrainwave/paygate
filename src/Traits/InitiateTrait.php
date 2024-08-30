@@ -2,8 +2,6 @@
 namespace Obrainwave\Paygate\Traits;
 
 use Illuminate\Support\Facades\Http;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 
 trait InitiateTrait 
 {
@@ -35,13 +33,12 @@ trait InitiateTrait
                     'channels' => isset($data->payment_methods) ? $data->payment_methods : null,
                     'callback_url' => isset($data->redirect_url) ? $data->redirect_url : null,
                 ];
-                // dd($payload);
 
                 $response = Http::withToken($paystack_token)
                 ->withOptions([
                     'headers' => $headers,
                 ])->post($url, $payload);
-                    Log::info($response);
+                    
                 if($response->status() == 200)
                 {
                     if(isset($response['status']) && $response['status'] == true)
@@ -80,7 +77,7 @@ trait InitiateTrait
                 ->withOptions([
                     'headers' => $headers,
                 ])->post($url, $payload);
-                    // Log::info($response);
+                    
                 if($response->status() == 200)
                 {
                     if(isset($response['status']) && $response['status'] == true)
@@ -124,7 +121,7 @@ trait InitiateTrait
                 ->withOptions([
                     'headers' => $headers,
                 ])->post($url, $payload);
-                    // Log::info($response);
+                   
                 if($response->status() == 200)
                 {
                     if(isset($response['status']) && $response['status'] == 'success')
@@ -174,7 +171,7 @@ trait InitiateTrait
                 ->withOptions([
                     'headers' => $headers,
                 ])->post($url, $payload);
-                    // dd($response->body());
+                    
                 if($response->status() == 200)
                 {
                     if(isset($response['requestSuccessful']) && $response['requestSuccessful'] == true)
@@ -257,7 +254,7 @@ trait InitiateTrait
         $response = Http::withOptions([
             'headers' => $headers,
         ])->post($url, $payload);
-            // dd($response->body());
+           
         if($response->status() == 200)
         {
             if(isset($response['requestSuccessful']) && $response['requestSuccessful'] == true)
