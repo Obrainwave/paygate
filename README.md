@@ -69,7 +69,7 @@ The table below shows and explains the field features. <br/>Note the **Mandatory
 
 #### Response Sample
 If successful, you will receive a response that looks like the below sample response
-```
+```json
 {
   "errors": false
   "message": "Payment initiated successfully with paystack"
@@ -125,7 +125,7 @@ The table below shows and explains the field features. <br/>Note the **Mandatory
 
 #### Response Sample
 If successful, you will receive a response that looks like the below sample response
-```
+```json
 {
   "errors": false
   "message": "Payment fetched successfully with gtpay"
