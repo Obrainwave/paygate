@@ -3,7 +3,7 @@
         'name' => 'obrainwave/paygate',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'f576c05b6264c34cb14ad510ffd2f83510bf45df',
+        'reference' => 'c421e8e6ed1d3b20b5177dae1dc46b21011ab190',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -550,7 +550,7 @@
         'obrainwave/paygate' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'f576c05b6264c34cb14ad510ffd2f83510bf45df',
+            'reference' => 'c421e8e6ed1d3b20b5177dae1dc46b21011ab190',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
