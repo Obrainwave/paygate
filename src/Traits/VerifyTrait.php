@@ -142,6 +142,7 @@ trait VerifyTrait
                     $amount = $data->amount/100;
                     $charged_amount = $data->requested_amount/100;
                     $ref = $data->reference;
+                    $provider_ref = $data->reference;
                     $payment_method = $data->channel;
                 }
                 break;
@@ -159,6 +160,7 @@ trait VerifyTrait
                     $amount = $data->transaction_amount/100;
                     $charged_amount = ($data->transaction_amount/100) + $data->fee;
                     $ref = $data->transaction_ref;
+                    $provider_ref = $data->gateway_transaction_ref;
                     $payment_method = $data->transaction_type;
                 }
                 break;
@@ -176,6 +178,7 @@ trait VerifyTrait
                     $amount = $data->amount;
                     $charged_amount = $data->charged_amount;
                     $ref = $data->tx_ref;
+                    $provider_ref = $data->flw_ref;
                     $payment_method = $data->payment_type;
                 }
                 break;
@@ -193,6 +196,7 @@ trait VerifyTrait
                     $amount = $data->amountPaid;
                     $charged_amount = $data->totalPayable;
                     $ref = $data->paymentReference;
+                    $provider_ref = $data->transactionReference;
                     $payment_method = $data->paymentMethod;
                 }
                 break;
@@ -207,6 +211,7 @@ trait VerifyTrait
                 'amount' => $amount,
                 'charged_amount' => $charged_amount,
                 'reference' => $ref,
+                'provider_reference' => $provider_ref,
                 'payment_method' => $payment_method,
                 'data' => $data, 
                 
@@ -214,7 +219,7 @@ trait VerifyTrait
         }else{
             $res = [
                 'errors' => true,
-                'message' => 'Necessary parameters missing from provider response',
+                'message' => 'Necessary parameters are missing from provider response',
                 'provider' => $provider,
                 'data' => null, 
             ];
