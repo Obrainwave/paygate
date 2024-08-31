@@ -134,6 +134,7 @@ If successful, you will receive a response that looks like the below sample resp
   "amount": 230
   "charged_amount": 232.3
   "reference": "9412041935"
+  "provider_reference": "8359610303031725065306645",
   "payment_method": "card"
   "data": {
     ...
@@ -150,6 +151,10 @@ Note that the table below shows and explains the most important fields that deci
 | `message` | string | Short description of the request  |
 | `provider` | string | This is the payment gateway name.<br/> For now can only be **paystack**, **gtpay**, **flutterwave** and **monnify**.   |
 | `status` | string | Can only be **successful** or **failed**. The payment was completed and successful if **successful** and **failed** if the payment was not successful or not completed.<br/> If you want to dig more about the `status`, check for payment gateway transaction status in `data` field. <br/> `status` for **paystack**, `transaction_status` for **gtpay**, `status` for **flutterwave**, and `paymentStatus` for **monnify**.  |
+| `amount` | float | Amount initiated to be paid by the customer from your transaction |
+| `charged_amount` | float | Total amount charged by payment gateway and paid by the customer. This can be equal to the `amount` if you don't pass the charge to your customer.  |
+| `reference` | string | Your unique generated reference sent to the payment gateway. It should also be returned via payment verification response |
+| `provider_reference` | string | Unique reference generated for the transaction by the payment gateway. It should also be returned via payment verification response |
 | `data` | object | This contains all the parameters you need to play with the payment or transaction verification |
 
 
