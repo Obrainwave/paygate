@@ -133,8 +133,8 @@ class ComposerStaticInitf3f975c3c196bfdc33c78622917b5712
             'Orchestra\\Testbench\\' => 20,
             'Orchestra\\Canvas\\Core\\' => 22,
             'Orchestra\\Canvas\\' => 17,
+            'Obrainwave\\Paygate\\Tests\\' => 25,
             'Obrainwave\\Paygate\\' => 19,
-            'Obrainwave\\AccessTree\\Tests\\' => 28,
         ),
         'N' => 
         array (
@@ -461,13 +461,13 @@ class ComposerStaticInitf3f975c3c196bfdc33c78622917b5712
         array (
             0 => __DIR__ . '/..' . '/orchestra/canvas/src',
         ),
+        'Obrainwave\\Paygate\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests',
+        ),
         'Obrainwave\\Paygate\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
-        ),
-        'Obrainwave\\AccessTree\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/tests',
         ),
         'NunoMaduro\\Collision\\' => 
         array (
