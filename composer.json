@@ -1,6 +1,6 @@
 {
     "name": "obrainwave/paygate",
-    "description": "This package will help you as a developer to use just one code for multiple payment gateway",
+    "description": "This package will help you as a developer to use just one code for multiple payment gateway. This is seamlessly easy to use.",
     "type": "library",
     "keywords": [
         "obrainwave",
