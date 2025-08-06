@@ -53,7 +53,7 @@ The table below shows and explains the field features. <br/>Note the **Mandatory
 | Field Name | Type | Paystack | GTPay | Flutterwave | Monnify | Description |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
 | `provider` | string | M  | M | M | M | This is the payment gateway name.<br/> For now can only be **paystack**, **gtpay**, **flutterwave** and **monnify**. |
-| `provider_token` | string | M  | M | M | M | This is the payment gateway `access_token` or `API Secret Key`. <br/> For **Monnify** only, you your `API Key` and `Secret Key` should be in `ApiKey:SecretKey` format as `provider_token` |
+| `provider_token` | string | M  | M | M | M | This is the payment gateway `access_token` or `API Secret Key`. <br/> For **Monnify** only, your `API Key` and `Secret Key` should be in `ApiKey:SecretKey` format as `provider_token` |
 | `amount` | float  | M  | M | M | M | This is the amount to be charged for the transaction or the amount you are debiting customer. |
 | `email` | string | M  | M | M | M | Customer's email address |
 | `reference` | string | M | M | M | M | Your unique generated reference |
