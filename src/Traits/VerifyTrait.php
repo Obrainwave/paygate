@@ -88,6 +88,8 @@ trait VerifyTrait
                     }else{
                         $payment = $this->failVerify($response);
                     }
+                }else{
+                    $payment = failMsg($data->provider, $response);
                 }
                 break;
 
