@@ -126,7 +126,7 @@ trait InitiateTrait
                 {
                     if(isset($response['status']) && $response['status'] == 'success')
                     {
-                        $payment = $this->successInitiate($response, $data->provider);
+                        $payment = $this->successInitiate($response, $data->provider, $data->reference);
                     }else{
                         $payment = failMsg($data->provider, $response, $data->reference);
                     }
