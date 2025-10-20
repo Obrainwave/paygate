@@ -60,7 +60,7 @@ function failMsg($provider, $response=null) : object
             {
                 $desc = $response['responseMessage'];
             }else{
-                $desc = 'Make sure you are passing correct parameters in your payload and also make sure your Gtpay API Key is valid';
+                $desc = 'Make sure you are passing correct parameters in your payload and also make sure your Monnify API Key is valid';
             }
             $error = [
                 'errors' => true,

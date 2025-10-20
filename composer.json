@@ -1,11 +1,23 @@
 {
     "name": "obrainwave/paygate",
-    "description": "This package will help you as a developer to use just one code for multiple payment gateway. This is seamlessly easy to use.",
+    "description": "Complete Laravel payment solution with 7 payment gateways, JavaScript SDK, advanced security, and plugin system. Unified API for Paystack, GTPay, Flutterwave, Monnify, Interswitch, Remita, and VTPass.",
     "type": "library",
     "keywords": [
         "obrainwave",
         "laravel",
-        "paygate"
+        "paygate",
+        "payment",
+        "gateway",
+        "paystack",
+        "flutterwave",
+        "monnify",
+        "interswitch",
+        "remita",
+        "vtpass",
+        "javascript-sdk",
+        "plugin-system",
+        "security",
+        "fraud-detection"
     ],
     "homepage": "https://github.com/obrainwave/paygate",
     "license": "MIT",
