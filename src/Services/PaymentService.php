@@ -99,7 +99,7 @@ class PaymentService implements PaymentServiceInterface
         }
 
         // Store payment if enabled
-        if (config('paygate.store_payments', true) && ! $result->errors) {
+        if (config('paygate.store_payments') && ! $result->errors) {
             $this->storePayment($data, $result);
         }
 
@@ -214,8 +214,10 @@ class PaymentService implements PaymentServiceInterface
             'initiated_at'      => now(),
         ];
 
-        $payment = Payment::create($paymentData);
-        return (object) $payment->toArray();
+        if (config('paygate.store_payments') === true) {
+            $payment = Payment::create($paymentData);
+            return (object) $payment->toArray();
+        }
     }
 
     /**
