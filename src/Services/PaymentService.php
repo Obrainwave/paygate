@@ -99,9 +99,9 @@ class PaymentService implements PaymentServiceInterface
         }
 
         // Store payment if enabled
-        if (config('paygate.store_payments') && ! $result->errors) {
-            $this->storePayment($data, $result);
-        }
+        // if (config('paygate.store_payments') && ! $result->errors) {
+        //     $this->storePayment($data, $result);
+        // }
 
         // Log payment initiation
         if (config('paygate.enable_logging', true)) {
@@ -127,13 +127,13 @@ class PaymentService implements PaymentServiceInterface
         $result = $gateway->verifyPayment($data);
 
         // Update payment status if stored
-        if (config('paygate.store_payments', true) && ! $result->errors) {
-            $this->updatePaymentStatus(
-                $data['reference'],
-                $result->status ?? 'failed',
-                (array) $result
-            );
-        }
+        // if (config('paygate.store_payments', true) && ! $result->errors) {
+        //     $this->updatePaymentStatus(
+        //         $data['reference'],
+        //         $result->status ?? 'failed',
+        //         (array) $result
+        //     );
+        // }
 
         // Log payment verification
         if (config('paygate.enable_logging', true)) {
