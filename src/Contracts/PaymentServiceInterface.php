@@ -32,7 +32,7 @@ interface PaymentServiceInterface
     /**
      * Store payment in database
      */
-    public function storePayment(array $data): object;
+    public function storePayment(array $data, object $result): object;
 
     /**
      * Update payment status
