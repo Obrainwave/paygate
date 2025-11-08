@@ -44,7 +44,7 @@ return [
     |
     */
 
-    'store_payments' => env('PAYGATE_STORE_PAYMENTS', true),
+    'store_payments' => env('PAYGATE_STORE_PAYMENTS', false),
     'payment_model' => \Obrainwave\Paygate\Models\Payment::class,
     
     /*
