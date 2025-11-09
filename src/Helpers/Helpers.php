@@ -7,7 +7,7 @@ function toObject($data): object
 }
 
 if (! function_exists('failMsg')) {
-    function failMsg($provider, $response = null): object
+    function failedMsg($provider, $response = null): object
     {
         switch ($provider) {
             case 'paystack':

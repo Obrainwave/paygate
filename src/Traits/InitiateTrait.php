@@ -45,10 +45,10 @@ trait InitiateTrait
                     {
                         $payment = $this->successInitiate($response, $data->provider);
                     }else{
-                        $payment = failMsg($data->provider, $response);
+                        $payment = failedMsg($data->provider, $response);
                     }
                 }else{
-                    $payment = failMsg($data->provider, $response);
+                    $payment = failedMsg($data->provider, $response);
                 }
                 break;
 
@@ -84,11 +84,11 @@ trait InitiateTrait
                     {
                         $payment = $this->successInitiate($response, $data->provider);
                     }else{
-                        $payment = failMsg($data->provider, $response);
+                        $payment = failedMsg($data->provider, $response);
                     }
                     
                 }else{
-                    $payment = failMsg($data->provider, $response);
+                    $payment = failedMsg($data->provider, $response);
                 }
                 break;
             
@@ -128,11 +128,11 @@ trait InitiateTrait
                     {
                         $payment = $this->successInitiate($response, $data->provider, $data->reference);
                     }else{
-                        $payment = failMsg($data->provider, $response, $data->reference);
+                        $payment = failedMsg($data->provider, $response, $data->reference);
                     }
                     
                 }else{
-                    $payment = failMsg($data->provider, $response);
+                    $payment = failedMsg($data->provider, $response);
                 }
                 break;
 
@@ -149,7 +149,7 @@ trait InitiateTrait
                         'error_description' => 'Unable to generate monnify access token. Please make sure you are using correct API KEY and SECRET KEY from your monnify dasboard'
                     ];
 
-                    return failMsg($data->provider, $res);
+                    return failedMsg($data->provider, $res);
                 }
 
                 $url = "{$monnify_url}/api/v1/merchant/transactions/init-transaction";
@@ -179,11 +179,11 @@ trait InitiateTrait
                     {
                         $payment = $this->successInitiate($response, $data->provider);
                     }else{
-                        $payment = failMsg($data->provider, $response);
+                        $payment = failedMsg($data->provider, $response);
                     }
                     
                 }else{
-                    $payment = failMsg($data->provider, $response);
+                    $payment = failedMsg($data->provider, $response);
                 }
                 break;
         }

@@ -38,7 +38,7 @@ trait VerifyTrait
                         $payment = $this->failVerify($response);
                     }
                 }else{
-                    $payment = failMsg($data->provider, $response);
+                    $payment = failedMsg($data->provider, $response);
                 }
                 break;
 
@@ -64,7 +64,7 @@ trait VerifyTrait
                         $payment = $this->failVerify($response);
                     }
                 }else{
-                    $payment = failMsg($data->provider, $response);
+                    $payment = failedMsg($data->provider, $response);
                 }
                 break;
 
@@ -89,7 +89,7 @@ trait VerifyTrait
                         $payment = $this->failVerify($response);
                     }
                 }else{
-                    $payment = failMsg($data->provider, $response);
+                    $payment = failedMsg($data->provider, $response);
                 }
                 break;
 
@@ -112,11 +112,11 @@ trait VerifyTrait
                     {
                         $payment = $this->successVerify($response, $data->provider);
                     }else{
-                        $payment = failMsg($data->provider, $response);
+                        $payment = failedMsg($data->provider, $response);
                     }
                     
                 }else{
-                    $payment = failMsg($data->provider, $response);
+                    $payment = failedMsg($data->provider, $response);
                 }
                 break; 
         }
